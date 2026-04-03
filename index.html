@@ -488,7 +488,7 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 
 <div class="save-banner reveal">
   <div class="save-inner">
-    <div class="save-text"><strong>Save Your Reading</strong>This page was prepared just for you. Save or screenshot before it's gone.</div>
+    <div class="save-text"><strong>Save Your Reading</strong>This reading expires April 5th. Save or screenshot before it's gone.</div>
     <div class="save-countdown" id="countdown">7d 0h</div>
     <button class="save-btn" onclick="window.print()">Save as PDF</button>
   </div>
@@ -509,7 +509,7 @@ const savedDate=localStorage.getItem("jaylonReadingDate_natalie");
 const now=Date.now();
 if(!savedDate)localStorage.setItem("jaylonReadingDate_natalie",now.toString());
 const startDate=parseInt(localStorage.getItem("jaylonReadingDate_natalie")||now);
-const expiryDate=startDate+(7*24*60*60*1000);
+const expiryDate=new Date("2026-04-05T23:59:59").getTime();
 function updateCountdown(){const rem=expiryDate-Date.now();if(rem<=0){document.getElementById("countdown").textContent="Save now";return;}const days=Math.floor(rem/(24*60*60*1000));const hours=Math.floor((rem%(24*60*60*1000))/(60*60*1000));document.getElementById("countdown").textContent=days+"d "+hours+"h";}
 updateCountdown();setInterval(updateCountdown,60000);
 document.querySelectorAll(".spread-photo-wrap").forEach(el=>{el.addEventListener("click",function(){this.classList.toggle("zoomed");});});

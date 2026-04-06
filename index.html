@@ -163,9 +163,86 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;will-change:opacity,transform}
 .reveal.visible{opacity:1;transform:translateY(0);will-change:auto}
 @media(max-width:700px){.reader-section{grid-template-columns:1fr;gap:2rem}.inner-cols{grid-template-columns:1fr}nav{padding:1rem 1.5rem}.nav-links{display:none}.save-inner{flex-direction:column;text-align:center}}
+@media print {
+  /* Hide decorative and interactive elements */
+  .starfield, nav, .scroll-cue, .save-banner, .archive-banner,
+  .archive-overlay, .hero-date-pill, .scroll-line, .caption-tap,
+  .zoom-overlay, .zoom-close, footer button, .pdf-btn { display: none !important; }
 
-    @media print {
-      .starfield, nav, .scroll-cue, .save-banner, .hero-date-pill { display: none !important; }
+  /* White canvas */
+  html, body { background: #fff !important; }
+
+  /* Override ALL CSS variable colours + rgba tints → readable dark text.
+     We target every named class that carries colour so nothing is missed. */
+  body, p, h1, h2, h3, h4, h5, h6, li, td, th, span, div,
+  strong, em, blockquote, figcaption, time, label, a,
+  .section-tag, .layer-info, .layer-number, .layer-kicker, .layer-title,
+  .hero-greeting, .hero-sub, .hero-eyebrow, .hero-name,
+  .reader-bio, .reader-bio p, .reading-section, .reading-section p,
+  .reading-section h3, .reading-section h4, .reading-block,
+  .guidebook, .guidebook p, .callout, .callout p,
+  .primer-card, .primer-card p, .before-inner, .before-inner p,
+  .central-pair, .central-pair p, .kipper-grid-note p,
+  .deck-badge, .nav-logo, .footer-logo, .save-text, .sig-inner p,
+  .overview-list li, .kipper-layout li, .mini-card, .framed-title,
+  .inner-cards, .card-line, .card-line em, .pair-cards,
+  .section-header, .caption-bar, .caption-label {
+    color: #1a1a1a !important;
+    text-shadow: none !important;
+    background-color: transparent !important;
+  }
+
+  /* Slightly lighter for secondary labels */
+  .deck-badge, .section-tag, .guidebook p,
+  .card-line, .caption-label { color: #444 !important; }
+
+  /* Images: force render + full width */
+  img {
+    display: block !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Spread containers – remove overflow:hidden so images show */
+  .spread-photo-wrap, figure.spread, .spread, .zoomable {
+    overflow: visible !important;
+    border: 1px solid #ccc !important;
+    border-radius: 0 !important;
+    cursor: default !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    background: transparent !important;
+  }
+
+  /* Force all reveal elements visible */
+  .reveal, .reveal.visible { opacity: 1 !important; transform: none !important; }
+
+  /* Kill animations */
+  * { animation: none !important; transition: none !important; }
+
+  /* Hero */
+  .hero, .hero-inner { min-height: auto !important; padding: 2rem !important; }
+
+  /* Section breaks */
+  .reading-block, .reading-section, article, section { break-inside: avoid; page-break-inside: avoid; }
+
+  /* Callout boxes */
+  .callout { border-left: 2px solid #888 !important; background: #f9f9f9 !important; }
+
+  /* Tables */
+  .pairs-table th, .pairs-table td { color: #1a1a1a !important; border-color: #ddd !important; }
+
+  /* Footer */
+  footer { border-top: 1px solid #ddd !important; }
+}
       body { background: #fff !important; color: #000 !important; }
       .spread-photo-wrap img { display: block !important; width: 100% !important; max-width: 100% !important; break-inside: avoid; }
       .hero { min-height: auto; padding: 2rem; }
@@ -186,9 +263,87 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline
   .nav-links{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
   .nav-links a{font-size:.6rem}
 }
+
+/* ── Archive overlay ── */
+.archive-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14,12,10,0.97);
+  align-items: center;
+  justify-content: center;
+}
+.archive-overlay.visible { display: flex; }
+.archive-box {
+  max-width: 460px;
+  text-align: center;
+  padding: 3rem 2.5rem;
+  border: 1px solid rgba(201,148,58,0.3);
+  border-radius: 4px;
+  background: rgba(14,12,10,0.9);
+}
+.archive-glyph {
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+  letter-spacing: 0.4em;
+}
+.archive-title {
+  font-family: "Cinzel Decorative", serif;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  margin-bottom: 1.2rem;
+}
+.archive-msg {
+  font-family: "DM Mono", monospace;
+  font-size: 0.68rem;
+  color: rgba(245,240,232,0.65);
+  letter-spacing: 0.08em;
+  line-height: 1.85;
+  margin-bottom: 2rem;
+}
+.archive-btn {
+  font-family: "DM Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  border: none;
+  padding: 0.9rem 2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  margin-bottom: 0.8rem;
+  transition: background 0.2s;
+}
+.archive-btn:hover { background: var(--gold-light); }
+.archive-note {
+  font-family: "DM Mono", monospace;
+  font-size: 0.52rem;
+  color: rgba(201,148,58,0.35);
+  letter-spacing: 0.15em;
+  margin: 0;
+}
+
 </style>
 </head>
 <body>
+<!-- Archive overlay -->
+<div class="archive-overlay" id="archiveOverlay">
+  <div class="archive-box">
+    <div class="archive-glyph">◆ ◆ ◆</div>
+    <h2 class="archive-title">This Reading Has Closed</h2>
+    <p class="archive-msg">The April Monthly Reading has been archived. Download your copy below to keep it. New weekly readings are posted every Monday — bookmark this page for upcoming weeks.</p>
+    <button class="archive-btn" onclick="window.print()">Download Your Reading</button>
+    <p class="archive-note">Open your browser's print dialog → choose Save as PDF.</p>
+  </div>
+</div>
+
 <div class="starfield" id="starfield"></div>
 
 <nav>
@@ -519,7 +674,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline
 
 <div class="save-banner reveal">
   <div class="save-inner">
-    <div class="save-text"><strong>Save Your Reading</strong>This reading expires April 5th. Save or screenshot before it's gone.</div>
+    <div class="save-text"><strong>April Monthly — Archived</strong>Download your copy below or take a screenshot to keep it.</div>
     <div class="save-countdown" id="countdown">7d 0h</div>
     <button class="save-btn" onclick="window.print()">Save as PDF</button>
   </div>
@@ -545,6 +700,14 @@ function updateCountdown(){const rem=expiryDate-Date.now();if(rem<=0){document.g
 updateCountdown();setInterval(updateCountdown,60000);
 document.querySelectorAll(".spread-photo-wrap").forEach(el=>{el.addEventListener("click",function(){this.classList.toggle("zoomed");});});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".spread-photo-wrap.zoomed").forEach(el=>el.classList.remove("zoomed"));});
+
+// Archive gate
+(function() {
+  const expiry = new Date("2026-04-05T23:59:59").getTime();
+  if (Date.now() >= expiry) {
+    document.getElementById('archiveOverlay').classList.add('visible');
+  }
+})();
 </script>
 </body>
 </html>

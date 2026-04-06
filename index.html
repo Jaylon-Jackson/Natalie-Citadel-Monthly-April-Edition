@@ -126,10 +126,57 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 .pdf-btn:hover{color:var(--gold);border-color:rgba(201,148,58,.5)}
 @media print{nav,body::before,.starfield,.scroll-cue{display:none!important}.hero{min-height:auto;padding:3rem 2rem 2rem}.reading-main,.reading-block{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}}
 .card-quote{border-left:2px solid rgba(201,148,58,.25);padding:1.1rem 1.5rem;margin:1.5rem 0;background:rgba(201,148,58,.03);border-radius:0 4px 4px 0}.card-quote p{font-size:.92rem;color:rgba(245,240,232,.72);line-height:1.9;margin-bottom:.5rem;font-style:italic}.card-quote cite{display:block;font-family:"DM Mono",monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,148,58,.4);font-style:normal;margin-top:.5rem}
+
+.expiry-gate{display:none;position:fixed;inset:0;z-index:9000;background:rgba(8,6,5,.97);
+  flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
+.expiry-gate.active{display:flex}
+.expiry-gate-inner{max-width:480px}
+.expiry-icon{font-size:2rem;color:var(--gold);margin-bottom:1.5rem;letter-spacing:.1em}
+.expiry-gate h2{font-family:"Cinzel Decorative",serif;font-size:1.1rem;color:var(--gold);
+  margin-bottom:1rem;letter-spacing:.12em}
+.expiry-gate p{font-family:"DM Mono",monospace;font-size:.65rem;color:rgba(245,240,232,.5);
+  letter-spacing:.12em;line-height:1.9;margin-bottom:2rem}
+.expiry-gate a{font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-dim);border:1px solid rgba(201,148,58,.25);
+  padding:.5rem 1.2rem;border-radius:2px;text-decoration:none;transition:all .3s}
+.expiry-gate a:hover{color:var(--gold);border-color:rgba(201,148,58,.5)}
+.closing-block{position:relative;z-index:1;max-width:900px;margin:0 auto 0;padding:3rem 2rem 4rem;border-top:1px solid rgba(201,148,58,.12)}
+.closing-inner{background:linear-gradient(135deg,rgba(201,148,58,.06),rgba(92,45,94,.04));border:1px solid rgba(201,148,58,.18);border-radius:4px;padding:2.8rem;position:relative;overflow:hidden}
+.closing-inner::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--plum),var(--gold),var(--rust))}
+.closing-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:2rem}
+.timer-display{display:flex;gap:1.5rem;justify-content:center;margin-bottom:2.2rem;flex-wrap:wrap}
+.timer-unit{display:flex;flex-direction:column;align-items:center;min-width:52px}
+.timer-digit{font-family:"Cinzel Decorative",serif;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--gold);line-height:1;text-shadow:0 0 20px rgba(201,148,58,.3)}
+.timer-sep{font-family:"Cinzel Decorative",serif;font-size:clamp(1.4rem,4vw,2rem);color:rgba(201,148,58,.3);align-self:flex-start;padding-top:.1rem}
+.timer-word{font-family:"DM Mono",monospace;font-size:.48rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dim);margin-top:.4rem}
+.timer-deadline{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.15em;text-align:center;color:rgba(245,240,232,.45);margin-bottom:2.5rem}
+.timer-deadline strong{color:rgba(201,148,58,.65);font-weight:400}
+.save-section{border-top:1px solid rgba(201,148,58,.1);padding-top:2rem;margin-top:.5rem}
+.save-section-label{font-family:"DM Mono",monospace;font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:1.4rem}
+.save-methods{display:flex;flex-direction:column;gap:1.2rem}
+.save-method{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+.save-method-icon{font-family:"DM Mono",monospace;font-size:.55rem;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(201,148,58,.25);border-radius:2px;padding:.25rem .5rem;white-space:nowrap;margin-top:.15rem}
+.save-method-text{font-family:"DM Mono",monospace;font-size:.62rem;color:rgba(245,240,232,.6);line-height:1.75;letter-spacing:.04em}
+.save-method-text strong{color:rgba(245,240,232,.85);font-weight:500}
+.save-note{margin-top:1.8rem;padding:.9rem 1.2rem;border-left:2px solid rgba(201,148,58,.25);background:rgba(201,148,58,.03);border-radius:0 4px 4px 0}
+.save-note p{font-family:"DM Mono",monospace;font-size:.58rem;color:rgba(245,240,232,.4);letter-spacing:.06em;line-height:1.8;margin:0}
+@media print{.closing-block{display:none}}
+
 </style>
 </head>
 <body>
 <div class="starfield" id="starfield"></div>
+
+<div class="expiry-gate" id="expiryGate">
+  <div class="expiry-gate-inner">
+    <div class="expiry-icon">&#10022;</div>
+    <h2>This Reading Has Closed</h2>
+    <p>Your access window for the Week of April 6th has ended.<br>
+    Reach out to book a new session or revisit a past reading.</p>
+    <a href="mailto:jaylonjackson101@gmail.com">Get in Touch</a>
+  </div>
+</div>
+
 <nav>
   <a href="#" class="nav-logo">J A Y L O N</a>
   <ul class="nav-links"><li><a href="#week-reading">Week Ahead</a></li><li><a href="#synthesis">Synthesis</a></li></ul>
@@ -393,6 +440,59 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 
 </div>
 </div>
+
+<div class="closing-block">
+<div class="closing-inner">
+  <div class="closing-label">Time Remaining to View This Reading</div>
+  <div class="timer-display">
+    <div class="timer-unit"><span class="timer-digit" id="t-days">--</span><span class="timer-word">days</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-unit"><span class="timer-digit" id="t-hours">--</span><span class="timer-word">hours</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-unit"><span class="timer-digit" id="t-mins">--</span><span class="timer-word">minutes</span></div>
+    <span class="timer-sep">:</span>
+    <div class="timer-unit"><span class="timer-digit" id="t-secs">--</span><span class="timer-word">seconds</span></div>
+  </div>
+  <p class="timer-deadline">This reading closes <strong>Sunday, April 12 &middot; Midnight</strong></p>
+  <div class="save-section">
+    <div class="save-section-label">How to Save Your Reading</div>
+    <div class="save-methods">
+      <div class="save-method">
+        <span class="save-method-icon">01 &mdash; Best</span>
+        <div class="save-method-text">
+          <strong>Print to PDF.</strong> Tap &ldquo;&darr;&nbsp;Save PDF&rdquo; in the top-right corner.
+          Your phone will open a print dialog &mdash; tap the share icon and choose
+          <strong>Save to Files</strong>. This saves the full reading as a PDF to your phone,
+          images included, readable anytime even without internet.
+        </div>
+      </div>
+      <div class="save-method">
+        <span class="save-method-icon">02 &mdash; Quick</span>
+        <div class="save-method-text">
+          <strong>Screenshot by section.</strong> On iPhone, press the
+          <strong>side button + volume up</strong> at the same time.
+          Tap the thumbnail that appears to mark it up or crop it before saving.
+          Scroll through and screenshot each section that matters most to you.
+        </div>
+      </div>
+      <div class="save-method">
+        <span class="save-method-icon">03 &mdash; Backup</span>
+        <div class="save-method-text">
+          <strong>Copy the link.</strong> The URL for this page doesn&rsquo;t change while
+          it&rsquo;s live. Copy it from Safari and send it to yourself in a note or text
+          so you can return quickly before the deadline.
+          After April 12th, the link will close &mdash; saving the PDF is still the most reliable option.
+        </div>
+      </div>
+    </div>
+    <div class="save-note">
+      <p>After April 12th, this page will display a closing message and the reading will no longer be accessible.
+      If you&rsquo;d like to revisit a past reading or book a new session, reach out directly.</p>
+    </div>
+  </div>
+</div>
+</div>
+
 </main>
 <footer>
   <div class="footer-logo">J A Y L O N</div>
@@ -406,6 +506,45 @@ document.querySelectorAll('.reveal').forEach(el=>_obs.observe(el));
 document.querySelectorAll('.spread-photo-wrap img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();img.closest('.spread-photo-wrap').classList.add('zoomed');});});
 document.querySelectorAll('.spread-photo-wrap').forEach(w=>{w.addEventListener('click',e=>{if(e.target===w)w.classList.remove('zoomed');});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.spread-photo-wrap.zoomed').forEach(w=>w.classList.remove('zoomed'));});
+
+(function(){
+  var expiry = new Date('2026-04-13T04:00:00Z');
+  function pad(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var now = new Date();
+    var diff = expiry - now;
+    if(diff <= 0){
+      ['t-days','t-hours','t-mins','t-secs'].forEach(function(id){
+        var el = document.getElementById(id);
+        if(el) el.textContent = '00';
+      });
+      var gate = document.getElementById('expiryGate');
+      if(gate){ gate.classList.add('active'); document.body.style.overflow='hidden'; }
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    var days=document.getElementById('t-days'), hours=document.getElementById('t-hours'),
+        mins=document.getElementById('t-mins'), secs=document.getElementById('t-secs');
+    if(days) days.textContent=pad(d);
+    if(hours) hours.textContent=pad(h);
+    if(mins) mins.textContent=pad(m);
+    if(secs) secs.textContent=pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+(function(){
+  var expiry = new Date('2026-04-13T04:00:00Z');
+  if(new Date() > expiry){
+    var gate = document.getElementById('expiryGate');
+    if(gate){ gate.classList.add('active'); document.body.style.overflow='hidden'; }
+  }
+})();
+
 </script>
 </body>
 </html>

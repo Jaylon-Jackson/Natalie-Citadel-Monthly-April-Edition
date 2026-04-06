@@ -122,9 +122,7 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 .spread-photo-wrap.zoomed img{width:auto;height:auto;max-width:96vw;max-height:94vh;filter:contrast(1.15) saturate(1.22) brightness(1) sepia(.03);object-fit:contain}
 .spread-photo-wrap.zoomed::after{display:none}
 .spread-photo-wrap.zoomed .spread-photo-caption{display:none}
-.pdf-btn{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);background:transparent;border:1px solid rgba(201,148,58,.25);padding:.35rem .8rem;border-radius:2px;cursor:pointer;transition:all .3s;flex-shrink:0}
-.pdf-btn:hover{color:var(--gold);border-color:rgba(201,148,58,.5)}
-@media print{nav,body::before,.starfield,.scroll-cue{display:none!important}.hero{min-height:auto;padding:3rem 2rem 2rem}.reading-main,.reading-block{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}}
+.hero{min-height:auto;padding:3rem 2rem 2rem}.reading-main,.reading-block{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}}
 .card-quote{border-left:2px solid rgba(201,148,58,.25);padding:1.1rem 1.5rem;margin:1.5rem 0;background:rgba(201,148,58,.03);border-radius:0 4px 4px 0}.card-quote p{font-size:.92rem;color:rgba(245,240,232,.72);line-height:1.9;margin-bottom:.5rem;font-style:italic}.card-quote cite{display:block;font-family:"DM Mono",monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,148,58,.4);font-style:normal;margin-top:.5rem}
 
 .expiry-gate{display:none;position:fixed;inset:0;z-index:9000;background:rgba(8,6,5,.97);
@@ -160,7 +158,7 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 .save-method-text strong{color:rgba(245,240,232,.85);font-weight:500}
 .save-note{margin-top:1.8rem;padding:.9rem 1.2rem;border-left:2px solid rgba(201,148,58,.25);background:rgba(201,148,58,.03);border-radius:0 4px 4px 0}
 .save-note p{font-family:"DM Mono",monospace;font-size:.58rem;color:rgba(245,240,232,.4);letter-spacing:.06em;line-height:1.8;margin:0}
-@media print{.closing-block{display:none}}
+}
 
 </style>
 </head>
@@ -180,7 +178,6 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 <nav>
   <a href="#" class="nav-logo">J A Y L O N</a>
   <ul class="nav-links"><li><a href="#week-reading">Week Ahead</a></li><li><a href="#synthesis">Synthesis</a></li></ul>
-  <button class="pdf-btn" onclick="window.print()">↓ Save PDF</button>
 </nav>
 <section class="hero">
   <div class="hero-glow"></div>
@@ -454,37 +451,48 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
     <div class="timer-unit"><span class="timer-digit" id="t-secs">--</span><span class="timer-word">seconds</span></div>
   </div>
   <p class="timer-deadline">This reading closes <strong>Sunday, April 12 &middot; Midnight</strong></p>
-  <div class="save-section">
+    <div class="save-section">
     <div class="save-section-label">How to Save Your Reading</div>
     <div class="save-methods">
+
       <div class="save-method">
-        <span class="save-method-icon">01 &mdash; Best</span>
+        <span class="save-method-icon">01 &mdash; Cards</span>
         <div class="save-method-text">
-          <strong>Print to PDF.</strong> Tap &ldquo;&darr;&nbsp;Save PDF&rdquo; in the top-right corner.
-          Your phone will open a print dialog &mdash; tap the share icon and choose
-          <strong>Save to Files</strong>. This saves the full reading as a PDF to your phone,
-          images included, readable anytime even without internet.
+          <strong>Screenshot the spread photos.</strong> Scroll to the card images and press
+          <strong>side button + volume up</strong> on iPhone to capture them.
+          Image export is still being worked on, so screenshotting the spreads directly
+          is the most reliable way to keep the visuals.
         </div>
       </div>
+
       <div class="save-method">
-        <span class="save-method-icon">02 &mdash; Quick</span>
+        <span class="save-method-icon">02 &mdash; Text</span>
         <div class="save-method-text">
-          <strong>Screenshot by section.</strong> On iPhone, press the
-          <strong>side button + volume up</strong> at the same time.
-          Tap the thumbnail that appears to mark it up or crop it before saving.
-          Scroll through and screenshot each section that matters most to you.
+          <strong>Screenshot section by section.</strong> Scroll through and screenshot
+          each position that lands for you. The text captures cleanly &mdash;
+          press <strong>side button + volume up</strong>, then tap the thumbnail to crop before saving.
         </div>
       </div>
+
       <div class="save-method">
-        <span class="save-method-icon">03 &mdash; Backup</span>
+        <span class="save-method-icon">03 &mdash; Link</span>
         <div class="save-method-text">
-          <strong>Copy the link.</strong> The URL for this page doesn&rsquo;t change while
-          it&rsquo;s live. Copy it from Safari and send it to yourself in a note or text
-          so you can return quickly before the deadline.
-          After April 12th, the link will close &mdash; saving the PDF is still the most reliable option.
+          <strong>Keep coming back.</strong> The page doesn&rsquo;t change while it&rsquo;s live &mdash;
+          copy the URL and check back throughout the week whenever something from the reading
+          surfaces. The page closes Sunday at midnight, so use the time.
         </div>
       </div>
+
     </div>
+
+    <div class="save-note">
+      <p>PDF export with images is still in development. For now, screenshots are your best option
+      for saving the spread photos. The reading itself isn&rsquo;t going anywhere until Sunday &mdash;
+      you don&rsquo;t need to save everything at once.</p>
+    </div>
+  </div>
+</div>
+</div>
     <div class="save-note">
       <p>After April 12th, this page will display a closing message and the reading will no longer be accessible.
       If you&rsquo;d like to revisit a past reading or book a new session, reach out directly.</p>

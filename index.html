@@ -132,7 +132,30 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 .user-note-block label{display:block;font-family:"DM Mono",monospace;font-size:.56rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.5rem}
 .user-note-block textarea{width:100%;min-height:70px;background:rgba(14,12,10,.35);border:1px solid rgba(201,148,58,.18);border-radius:2px;color:var(--bone);font-family:'Cormorant Garamond',Georgia,serif;font-size:.92rem;padding:.6rem .75rem;resize:vertical;outline:none}
 .user-note-block textarea:focus{border-color:rgba(201,148,58,.5)}
-@media print{nav,body::before,.starfield,.scroll-cue,.user-note-block{display:none!important}.hero{min-height:auto;padding:3rem 2rem 2rem}.reading-main,.reading-block{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}}
+@media print{nav,body::before,.starfield,.scroll-cue,.user-note-block,.access-note{display:none!important}.hero{min-height:auto;padding:3rem 2rem 2rem}.reading-main,.reading-block{break-inside:avoid}.reveal{opacity:1!important;transform:none!important}}
+.countdown-pill{font-family:"DM Mono",monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dim);background:rgba(201,148,58,.06);border:1px solid rgba(201,148,58,.25);padding:.4rem .85rem;border-radius:2rem;display:inline-flex;align-items:center;gap:.55rem;flex-shrink:0;white-space:nowrap}
+.countdown-pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:cd-pulse 2.4s ease-in-out infinite}
+.countdown-pill.urgent{color:#e8a87a;border-color:rgba(232,168,122,.45);background:rgba(139,58,26,.12)}
+.countdown-pill.urgent::before{background:#e8a87a;box-shadow:0 0 8px #e8a87a}
+@keyframes cd-pulse{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+.access-note{position:relative;z-index:1;max-width:760px;margin:-1.5rem auto 3rem;padding:0 2rem}
+.access-note-inner{background:linear-gradient(135deg,rgba(201,148,58,.05),rgba(92,45,94,.05));border:1px solid rgba(201,148,58,.22);border-radius:4px;padding:1.4rem 1.6rem;display:flex;gap:1.2rem;align-items:flex-start}
+.access-note-glyph{font-family:"Cinzel Decorative",serif;font-size:1.2rem;color:var(--gold);line-height:1;flex-shrink:0;margin-top:.15rem}
+.access-note-body{flex:1}
+.access-note-label{font-family:"DM Mono",monospace;font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.access-note-body p{font-family:"Cormorant Garamond",serif;font-size:.92rem;color:rgba(245,240,232,.78);line-height:1.7;margin:0}
+.access-note-body p + p{margin-top:.5rem}
+.access-note-body strong{color:var(--gold-light);font-weight:500;font-style:italic}
+@media(max-width:640px){.access-note{margin-top:0}.access-note-inner{flex-direction:column;gap:.6rem;padding:1.2rem}}
+.expiry-overlay{position:fixed;inset:0;z-index:9000;background:radial-gradient(ellipse at center,rgba(20,16,12,.97),rgba(8,6,4,.99));display:none;align-items:center;justify-content:center;padding:2rem;opacity:0;transition:opacity .8s ease}
+.expiry-overlay.active{display:flex;opacity:1}
+.expiry-card{max-width:540px;text-align:center;padding:3rem 2.4rem;border:1px solid rgba(201,148,58,.3);background:linear-gradient(135deg,rgba(201,148,58,.06),rgba(92,45,94,.08));border-radius:6px;position:relative}
+.expiry-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--plum),var(--gold),var(--rust))}
+.expiry-eyebrow{font-family:"DM Mono",monospace;font-size:.62rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem}
+.expiry-title{font-family:"Cinzel Decorative",serif;font-size:1.6rem;color:var(--gold-light);margin-bottom:1rem;line-height:1.3}
+.expiry-card p{font-family:"Cormorant Garamond",serif;font-size:1rem;color:rgba(245,240,232,.8);line-height:1.8;margin-bottom:.8rem}
+.expiry-card p:last-child{margin-bottom:0;font-size:.85rem;color:rgba(245,240,232,.55);font-style:italic;margin-top:1.4rem}
+@media(max-width:640px){.expiry-card{padding:2.2rem 1.4rem}.expiry-title{font-size:1.3rem}}
 </style>
 </head>
 <body>
@@ -140,6 +163,7 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
 <nav>
   <a href="#" class="nav-logo">J A Y L O N</a>
   <ul class="nav-links"><li><a href="#reading">Reading</a></li><li><a href="#synthesis">Synthesis</a></li></ul>
+  <div class="countdown-pill" id="countdown" data-expires="2026-07-27T03:59:59Z" title="This reading closes Sunday, July 26, 2026 · 11:59 PM ET"><span id="countdown-text">Available all week</span></div>
   <button class="pdf-btn" onclick="window.print()">↓ Save PDF</button>
 </nav>
 <section class="hero">
@@ -151,6 +175,17 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
   <div class="hero-date-pill">July 19, 2026 &nbsp;·&nbsp; Prepared by Jaylon</div>
   <div class="scroll-cue"><span>Read On</span><div class="scroll-line"></div></div>
 </section>
+
+<aside class="access-note">
+  <div class="access-note-inner">
+    <div class="access-note-glyph">◈</div>
+    <div class="access-note-body">
+      <div class="access-note-label">A Note on Holding This Reading</div>
+      <p>This page stays open through <strong>Sunday, July 26 at 11:59 PM ET</strong>, then closes. Keep what matters by taking <strong>screenshots</strong> of the parts that land, or jot down the lines you want to carry with you, or use the Save PDF button above.</p>
+      <p>Sit with it more than once. The cards that don't make sense today often start speaking by midweek.</p>
+    </div>
+  </div>
+</aside>
 <section class="deck-opener">
   <img src="Near-Far-Box-Opening.jpg" alt="This week's deck lineup" loading="lazy">
   <span class="deck-opener-label">Prepared by Jaylon</span>
@@ -322,6 +357,17 @@ footer p{font-family:"DM Mono",monospace;font-size:.6rem;color:rgba(201,148,58,.
   <div class="footer-logo">J A Y L O N</div>
   <p>Prepared with intention &nbsp;·&nbsp; July 19, 2026</p>
 </footer>
+
+<div class="expiry-overlay" id="expiryOverlay" aria-hidden="true" role="dialog" aria-labelledby="expiryTitle">
+  <div class="expiry-card">
+    <div class="expiry-eyebrow">◆ This Week Has Closed ◆</div>
+    <h2 class="expiry-title" id="expiryTitle">The Near/Far Box reading has expired</h2>
+    <p>Natalie, this reading was held open through <strong style="color:var(--gold-light);font-weight:500">Sunday, July 26, 2026</strong>. It has now returned to the deck.</p>
+    <p>If you'd like a new reading or want to revisit anything from this one, reach out to Jaylon directly.</p>
+    <p>If you took screenshots, notes, or saved the PDF during the week, those are yours to keep.</p>
+  </div>
+</div>
+
 <script>
 const sf=document.getElementById('starfield');
 for(let i=0;i<80;i++){const s=document.createElement('div');s.className='star';s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--dur:'+(3+Math.random()*6)+'s;--delay:'+Math.random()*5+'s;--bright:'+(0.3+Math.random()*0.5);sf.appendChild(s);}
@@ -330,6 +376,43 @@ document.querySelectorAll('.reveal').forEach(el=>_obs.observe(el));
 document.querySelectorAll('.spread-photo-wrap img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();img.closest('.spread-photo-wrap').classList.add('zoomed');});});
 document.querySelectorAll('.spread-photo-wrap').forEach(w=>{w.addEventListener('click',e=>{if(e.target===w)w.classList.remove('zoomed');});});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.spread-photo-wrap.zoomed').forEach(w=>w.classList.remove('zoomed'));});
+
+(function(){
+  var EXPIRES = new Date('2026-07-27T03:59:59Z').getTime();
+  var pill = document.getElementById('countdown');
+  var text = document.getElementById('countdown-text');
+  var overlay = document.getElementById('expiryOverlay');
+  function pad(n){return n<10?'0'+n:''+n;}
+  function fmt(ms){
+    if(ms<=0) return 'Reading closed';
+    var s=Math.floor(ms/1000), d=Math.floor(s/86400);
+    s-=d*86400; var h=Math.floor(s/3600);
+    s-=h*3600; var m=Math.floor(s/60);
+    s-=m*60;
+    if(d>=1) return d+'d '+pad(h)+'h left';
+    if(h>=1) return h+'h '+pad(m)+'m left';
+    return m+'m '+pad(s)+'s left';
+  }
+  function tick(){
+    var now=Date.now(), ms=EXPIRES-now;
+    if(ms<=0){
+      if(overlay){overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');}
+      document.body.style.overflow='hidden';
+      if(text) text.textContent='Reading closed';
+      if(pill) pill.classList.add('urgent');
+      return false;
+    }
+    if(text) text.textContent=fmt(ms);
+    if(pill){
+      if(ms < 24*60*60*1000) pill.classList.add('urgent');
+      else pill.classList.remove('urgent');
+    }
+    return true;
+  }
+  if(tick()){
+    setInterval(function(){ if(!tick()){/*stopped*/} }, 1000);
+  }
+})();
 </script>
 
 </body></html>
